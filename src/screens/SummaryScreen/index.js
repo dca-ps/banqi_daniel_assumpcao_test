@@ -4,6 +4,7 @@ import { View, Text, Button, Image, TouchableOpacity, StyleSheet, FlatList, Safe
 import TransactionItem from '../../components/TransactionItem';
 import { withStore } from "../../Store";
 import DateRangePicker from '../../components/DateRangePicker';
+import Colors from '../../utils/Colors';
 
 
 
@@ -69,7 +70,7 @@ export default withStore((props) => {
   return (
       <SafeAreaView style={{ flex: 1, marginTop:18}}>
           <View style={{flexDirection: 'row', alignContent: 'center', justifyContent:'space-between', marginHorizontal:20}}>
-            <Text style={{fontSize: 18, color:"#EC008C" }}>meu<Text style={{fontSize:22, fontWeight:'bold'}}>banQi</Text></Text>
+            <Text style={{fontSize: 18, color: Colors.banqiPink }}>meu<Text style={{fontSize:22, fontWeight:'bold'}}>banQi</Text></Text>
 			<TouchableOpacity onPress={() => {setShowFilter(true)}}>
 			{fromDate == null || toDate == null ? 
 				<Image style={styles.balanceIcon} source={require('../../assets/ic_filter.png')}/> :
@@ -79,7 +80,7 @@ export default withStore((props) => {
           </View>
           <Text style={{alignSelf: 'center', marginTop:28}}>Meu saldo:</Text>
           <View style={{alignSelf: 'center', flexDirection: 'row', marginTop: 8}}>
-            <Text style={{fontSize: 20, fontWeight:'bold', color: '#333333', backgroundColor:  showBalance ? 'transparent' : '#333333'  }}>R$ <Text style={{fontSize: 24, color: '#333333', fontWeight:'bold'}}>{user && user.balance}</Text></Text>
+            <Text style={{fontSize: 20, fontWeight:'bold', color: Colors.standartGrey, backgroundColor:  showBalance ? 'transparent' : Colors.standartGrey  }}>R$ <Text style={{fontSize: 24, color: Colors.standartGrey, fontWeight:'bold'}}>{user && user.balance}</Text></Text>
             <TouchableOpacity style={{justifyContent: 'center', marginLeft: 13}} onPress={() => {setShowBalance(!showBalance)}}>
               {showBalance ? 
                 <Image style={styles.balanceIcon} source={require('../../assets/eye_off_outline.png')} /> :
@@ -97,7 +98,7 @@ export default withStore((props) => {
               keyExtractor={item => item._id}
               ListHeaderComponent={<Text>Historico de transações</Text>}
               ListHeaderComponentStyle={{marginBottom: 30}}
-              ListFooterComponent={!hideShowAll && <TouchableOpacity onPress={() => {setShowAll(!showAll)}}><Text style={{fontWeight:'bold', color: '#00AEEF'}}>{showAll ? "VER MENOS" : "VER MAIS"}</Text></TouchableOpacity>}
+              ListFooterComponent={!hideShowAll && <TouchableOpacity onPress={() => {setShowAll(!showAll)}}><Text style={{fontWeight:'bold', color: Colors.cyaneBlue}}>{showAll ? "VER MENOS" : "VER MAIS"}</Text></TouchableOpacity>}
               ListFooterComponentStyle={{marginTop: 30, justifyContent:'flex-end', flexDirection: 'row'}}
             />
           </View>
@@ -116,7 +117,7 @@ export default withStore((props) => {
 					<DateRangePicker
 						initialRange={[fromDate, toDate]}
 						onSuccess={returnFilter}
-						theme={{ markColor: '#EC008C', markTextColor: 'white' }}/>
+						theme={{ markColor: Colors.banqiPink, markTextColor: 'white' }}/>
 				</View>
 		</Modal>
 
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2

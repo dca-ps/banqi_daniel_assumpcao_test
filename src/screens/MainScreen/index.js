@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { withStore } from "../../Store";
+import Colors from '../../utils/Colors';
 
 
 export default withStore((props) => {
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
 		flex: 1, 
 		alignItems: 'center', 
 		justifyContent: 'space-evenly', 
-		backgroundColor: '#EC008C' 
+		backgroundColor: Colors.banqiPink
 	},
 	infoContainer:{
 		justifyContent: 'center',

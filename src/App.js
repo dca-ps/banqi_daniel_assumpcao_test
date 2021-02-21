@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import {MainScreen, SummaryScreen} from './screens'
+import Colors from './utils/Colors';
 
 const Stack = createStackNavigator();
 
@@ -32,8 +33,8 @@ const App = props => {
           },
         })}
         tabBarOptions={{
-          activeTintColor: '#EC008C',
-          inactiveTintColor: '#333333',
+          activeTintColor: Colors.banqiPink,
+          inactiveTintColor: Colors.standartGrey,
         }}
       >
           <Tab.Screen name="Home" component={MainScreen} />

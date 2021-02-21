@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
+import Colors from '../utils/Colors';
 
 
 export default TransactionItem = (props) => {
@@ -49,11 +50,11 @@ export default TransactionItem = (props) => {
                         </View>
                         <View style={{marginHorizontal:20, alignSelf: "flex-start", justifyContent: "flex-start"}}>
                             <Text style={{fontSize: 14}}>{transaction.description}</Text>
-                            {showDetails && <Text style={{fontSize: 12, color: transaction.amount > 0 ? "#14C46F" : "#FF0000"}}>{parseDate()}</Text>}
+                            {showDetails && <Text style={{fontSize: 12, color: transaction.amount > 0 ? Colors.positiveGreen : Colors.negativeRed}}>{parseDate()}</Text>}
 
                         </View>
                     </View>
-                    <Text style={{ color: transaction.amount > 0 ? "#14C46F" : "#FF0000"}}>{parseAmmount()}</Text>
+                    <Text style={{ color: transaction.amount > 0 ? Colors.positiveGreen : Colors.negativeRed}}>{parseAmmount()}</Text>
                 </View>
             }
 

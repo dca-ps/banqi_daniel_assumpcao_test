@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 import { Calendar, LocaleConfig } from 'react-native-calendars'
 import { useEffect, useState } from 'react';
+import Colors from '../utils/Colors';
 
 
 const XDate = require('xdate');
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
         flex:1,
         height: 50,
         width: 50,
-        backgroundColor: '#EC008C',
+        backgroundColor: Colors.banqiPink,
         justifyContent: 'center',
         alignItems: 'center',
         margin: 20,
@@ -134,7 +135,3 @@ const styles = StyleSheet.create({
     }
   
   })
-
-DateRangePicker.defaultProps = {
-  theme: { markColor: '#00adf5', markTextColor: '#ffffff' }
-};
