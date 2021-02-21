@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, FlatList, SafeAreaView } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, FlatList, SafeAreaView, Modal } from 'react-native';
 import TransactionItem from '../../components/TransactionItem';
 import { withStore } from "../../Store";
 import DateRangePicker from '../../components/DateRangePicker';
@@ -41,7 +41,6 @@ export default withStore((props) => {
 				})
 			}
 
-			console.log(transactions.length)
 			if (transactions.length <= 3){
 				hideShowAll = true
 			}
@@ -104,10 +103,23 @@ export default withStore((props) => {
           </View>
 
 
-		  {showFilter && <DateRangePicker
-			initialRange={[fromDate, toDate]}
-			onSuccess={returnFilter}
-			theme={{ markColor: '#EC008C', markTextColor: 'white' }}/>}
+		  <Modal
+			animationType="slide"
+			transparent={false}
+			visible={showFilter}
+			onRequestClose={() => {
+			Alert.alert("Modal has been closed.");
+			//setShowFilter(!showFilter);
+			}}>
+				<View style={styles.modalView}>
+
+					<DateRangePicker
+						initialRange={[fromDate, toDate]}
+						onSuccess={returnFilter}
+						theme={{ markColor: '#EC008C', markTextColor: 'white' }}/>
+				</View>
+		</Modal>
+
 
       </SafeAreaView>
     );
@@ -117,6 +129,25 @@ const styles = StyleSheet.create({
   balanceIcon:{
     height: 24,
     width: 24,
-  }
+  },
+
+  modalView: {
+	flex:1, 
+	justifyContent: 'center', 
+	alignItems: 'center',
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
 
 })

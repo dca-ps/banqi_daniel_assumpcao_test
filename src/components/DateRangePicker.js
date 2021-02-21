@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Button } from 'react-native'
+import React from 'react'
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 import { Calendar, LocaleConfig } from 'react-native-calendars'
 import { useEffect, useState } from 'react';
-import { set } from 'react-native-reanimated';
 
 
 const XDate = require('xdate');
@@ -105,12 +104,37 @@ export default DateRangePicker = (props) => {
                 onDayPress={(day) => {onDayPress(day)}}/>
 
                 <View style={{flexDirection: 'row', justifyContent:"space-around"}} >
-                    <Button title="Ok" onPress={() => {props.onSuccess(fromDate, toDate)}}/>
-                    <Button title="Limpar" onPress={() => {clear()}}/>
+                    <TouchableOpacity style={styles.buttons} onPress={() => {props.onSuccess(fromDate, toDate)}}>
+                        <Text style={styles.buttonsText}>OK</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttons} onPress={() => {clear()}}>
+                        <Text style={styles.buttonsText}>Limpar</Text>
+                    </TouchableOpacity>
                 </View>
         </View>
     )
 }
+
+
+const styles = StyleSheet.create({
+    buttons:{
+        flex:1,
+        height: 50,
+        width: 50,
+        backgroundColor: '#EC008C',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 20,
+        borderRadius: 20,
+
+
+    },
+    buttonsText:{
+        color: 'white'
+
+    }
+  
+  })
 
 DateRangePicker.defaultProps = {
   theme: { markColor: '#00adf5', markTextColor: '#ffffff' }
