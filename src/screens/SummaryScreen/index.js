@@ -68,8 +68,8 @@ export default withStore((props) => {
 
 
   return (
-      <SafeAreaView style={{ flex: 1, marginTop:18}}>
-          <View style={{flexDirection: 'row', alignContent: 'center', justifyContent:'space-between', marginHorizontal:20}}>
+      <SafeAreaView style={styles.container}>
+          <View style={styles.headerContainer}>
             <Text style={{fontSize: 18, color: Colors.banqiPink }}>meu<Text style={{fontSize:22, fontWeight:'bold'}}>banQi</Text></Text>
 			<TouchableOpacity onPress={() => {setShowFilter(true)}}>
 			{fromDate == null || toDate == null ? 
@@ -107,11 +107,7 @@ export default withStore((props) => {
 		  <Modal
 			animationType="slide"
 			transparent={false}
-			visible={showFilter}
-			onRequestClose={() => {
-			Alert.alert("Modal has been closed.");
-			//setShowFilter(!showFilter);
-			}}>
+			visible={showFilter}>
 				<View style={styles.modalView}>
 
 					<DateRangePicker
@@ -127,28 +123,38 @@ export default withStore((props) => {
 })
 
 const styles = StyleSheet.create({
-  balanceIcon:{
-    height: 24,
-    width: 24,
-  },
+	container:{
+		flex: 1, marginTop:18
+	},
+	headerContainer:{
+		flexDirection: 'row', 
+		alignContent: 'center', 
+		justifyContent:'space-between', 
+		marginHorizontal:20
+	},
 
-  modalView: {
-	flex:1, 
-	justifyContent: 'center', 
-	alignItems: 'center',
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
+	balanceIcon:{
+		height: 24,
+		width: 24,
+	},
+
+	modalView: {
+		flex:1, 
+		justifyContent: 'center', 
+		alignItems: 'center',
+		margin: 20,
+		backgroundColor: "white",
+		borderRadius: 20,
+		padding: 35,
+		alignItems: "center",
+		shadowColor: "black",
+		shadowOffset: {
+		width: 0,
+		height: 2
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 4,
+		elevation: 5
+	},
 
 })

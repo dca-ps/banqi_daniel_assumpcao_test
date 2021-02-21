@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { View, Text, Image } from 'react-native';
+import { Image } from 'react-native';
 
 import StoreProvider from './Store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 
 import {MainScreen, SummaryScreen} from './screens'
 import Colors from './utils/Colors';
