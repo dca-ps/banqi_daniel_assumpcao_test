@@ -78,7 +78,6 @@ export default DateRangePicker = (props) => {
   }
 
   setupInitialRange = () => {
-    console.log(props.initialRange)
     if (!props.initialRange) return
     let [fromDate, toDate] = props.initialRange
     if(fromDate == null || toDate == null) return
