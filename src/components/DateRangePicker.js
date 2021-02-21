@@ -79,6 +79,7 @@ export default DateRangePicker = (props) => {
   }
 
   setupInitialRange = () => {
+    console.log(props.initialRange)
     if (!props.initialRange) return
     let [fromDate, toDate] = props.initialRange
     if(fromDate == null || toDate == null) return
@@ -99,7 +100,7 @@ export default DateRangePicker = (props) => {
         <View>
             <Calendar {...props}
                 markingType={'period'}
-                current={fromDate}
+                current={props.initialRange[0]}
                 markedDates={markedDates}
                 onDayPress={(day) => {onDayPress(day)}}/>
 
