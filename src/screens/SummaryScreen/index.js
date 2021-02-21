@@ -14,18 +14,13 @@ export default withStore((props) => {
 	const [showFilter, setShowFilter] = useState(false);
 	const [fromDate, setFromDate] = useState(null);
 	const [toDate, setToDate] = useState(null);
-	const [filteredTransactions, setFilteredTransactions] = useState([])
+	let hideShowAll =  false 
 
 
 
 	useEffect(() => {
 		setUser(props.store.userInfo)
 	}, [props.store.userInfo])
-
-	useEffect(() => {
-		user && filterTransactions()
-	}, [user, showAll])
-
 
 
 
@@ -45,20 +40,29 @@ export default withStore((props) => {
 
 				})
 			}
+
+			console.log(transactions.length)
+			if (transactions.length <= 3){
+				hideShowAll = true
+			}
+
 			if(showAll){
-				setFilteredTransactions(transactions)
+				return (transactions)
 			}
 			else{
-				setFilteredTransactions(transactions.slice(0, 3))
+				return (transactions.slice(0, 3))
 			}
 	  }
+
+	  return []
   }
 
   const returnFilter = (localFromDate, localToDate) => {
 	setShowFilter(false)
+	hideShowAll = false
 	setFromDate(localFromDate)
 	setToDate(localToDate)
-	filterTransactions()
+
   }
 
 
@@ -88,13 +92,13 @@ export default withStore((props) => {
             <FlatList
               contentContainerStyle={{ paddingBottom: 20, marginHorizontal: 20 }}
               ItemSeparatorComponent={() => <Image style={{marginVertical: 5, marginLeft: 11}} source={require('../../assets/line.png')} />}
-              data={filteredTransactions}
+              data={filterTransactions()}
               renderItem={({item}) => (<TransactionItem transaction={item}/>)}
-			  extraData={filteredTransactions, fromDate, toDate}
+			  extraData={fromDate, toDate}
               keyExtractor={item => item._id}
               ListHeaderComponent={<Text>Historico de transações</Text>}
               ListHeaderComponentStyle={{marginBottom: 30}}
-              ListFooterComponent={filteredTransactions.length >= 3 && <TouchableOpacity onPress={() => {setShowAll(!showAll)}}><Text style={{fontWeight:'bold', color: '#00AEEF'}}>{showAll ? "VER MENOS" : "VER MAIS"}</Text></TouchableOpacity>}
+              ListFooterComponent={!hideShowAll && <TouchableOpacity onPress={() => {setShowAll(!showAll)}}><Text style={{fontWeight:'bold', color: '#00AEEF'}}>{showAll ? "VER MENOS" : "VER MAIS"}</Text></TouchableOpacity>}
               ListFooterComponentStyle={{marginTop: 30, justifyContent:'flex-end', flexDirection: 'row'}}
             />
           </View>
